@@ -1,0 +1,4 @@
+kafka:
+  servers: 119.23.111.174:9092
+  groupId1: group1
+  topic1: topic009
