@@ -1,4 +1,5 @@
 kafka:
-  servers: 119.23.111.174:9092
-  groupId1: group1
-  topic1: topic009
+  servers: 47.96.25.144:9092
+  #servers: 119.23.111.174:9092
+  groupId1: group_01
+  topic1: test_topic
