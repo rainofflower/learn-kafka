@@ -19,11 +19,11 @@ public class TestClass {
 	private String topic;
 
 	@Autowired
-	private KafkaTemplate<Integer, String> kafkaTemplate;
+	private KafkaTemplate<String, String> kafkaTemplate;
 	
 	@Test
 	public void test1() {
-		String data = "yanghui1122";
+		String data = "晚安啦";
 		kafkaTemplate.send( topic, data);
 	}
 }

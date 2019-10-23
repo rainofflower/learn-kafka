@@ -1,5 +1,11 @@
 kafka:
-  servers: 47.96.25.144:9092
-  #servers: 119.23.111.174:9092
+#  servers: 47.96.25.144:9092
+#  servers: 192.168.120.241:9092
+  servers: 192.168.43.151:9092
+#  ,192.168.43.152:9092,192.168.43.153:9092
   groupId1: group_01
   topic1: test_topic
+server:
+  port: 8200
+  servlet:
+    context-path: /kafka

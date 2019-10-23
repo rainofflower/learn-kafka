@@ -1,5 +1,7 @@
 package com.yanghui.study.kafka.config;
 
+import org.apache.kafka.common.serialization.LongDeserializer;
+import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,14 +31,16 @@ public class KafkaConsumerConfig {
     private String groupId;
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<Integer,String> kafkaListenerContainerFactory(){
-        ConcurrentKafkaListenerContainerFactory<Integer, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
+    public ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerFactory(){
+        ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
+        factory.setBatchListener(true);
+        factory.setConcurrency(3);
         return factory;
     }
 
     @Bean
-    public ConsumerFactory<Integer,String> consumerFactory(){
+    public ConsumerFactory<String,String> consumerFactory(){
         return new DefaultKafkaConsumerFactory<>(consumerConfigs());
     }
 
@@ -47,8 +51,8 @@ public class KafkaConsumerConfig {
         props.put("group.id", groupId);
         props.put("enable.auto.commit", "true");
         props.put("auto.commit.interval.ms", "1000");
-        props.put("key.deserializer", "org.apache.kafka.common.serialization.IntegerDeserializer");
-        props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
+        props.put("key.deserializer", StringDeserializer.class);
+        props.put("value.deserializer", StringDeserializer.class); //LongDeserializer.class
         return props;
     }
 }
